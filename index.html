@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dutycall - Smart Solutions. Safe Systems. Strong Security.</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+  
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { primary: '#0ea5e9', secondary: '#14b8a6', dark: '#0f172a' } } }
+    }
+  </script>
+
+  <style>
+    .hero-bg {
+      background-image: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)),
+                        url('https://thumbs.dreamstime.com/b/digital-globe-africa-map-circuit-board-background-futuristic-tech-concept-shows-communication-network-glowing-lights-367447942.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    .animate-gradient-slow { background-size: 200% 200%; animation: gradient 25s ease infinite; }
+    @keyframes scan { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+    .animate-scan { animation: scan 20s linear infinite; }
+    @keyframes pulse-glow { 0%,100% { text-shadow: 0 0 10px rgba(45,212,191,0.5); } 50% { text-shadow: 0 0 30px rgba(45,212,191,0.9), 0 0 60px rgba(45,212,191,0.4); } }
+    .animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
+    .particle { position: absolute; background: rgba(45,212,191,0.6); border-radius: 50%; box-shadow: 0 0 15px rgba(45,212,191,0.8); pointer-events: none; }
+    .particle-1 { width:4px; height:4px; top:15%; left:20%; animation: float 18s infinite ease-in-out; }
+    .particle-2 { width:6px; height:6px; top:40%; right:15%; animation: float 22s infinite ease-in-out reverse; }
+    .particle-3 { width:5px; height:5px; bottom:25%; left:35%; animation: float 25s infinite ease-in-out; }
+    .particle-4 { width:3px; height:3px; bottom:10%; right:25%; animation: float 20s infinite ease-in-out reverse; }
+    @keyframes float { 0%,100% { transform: translate(0,0); opacity:0.4; } 50% { transform: translate(30px,-40px); opacity:0.9; } }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    .animate-fade-in { animation: fadeIn 1.2s ease-out forwards; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-500 { animation-delay: 0.5s; }
+    .delay-700 { animation-delay: 0.7s; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased">
+
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg">D</div>
+        <span class="text-2xl font-bold tracking-tight">Dutycall</span>
+      </div>
+      <div class="hidden md:flex items-center gap-10 text-sm font-medium">
+        <a href="#services" class="hover:text-teal-400 transition">Services</a>
+        <a href="#about" class="hover:text-teal-400 transition">About</a>
+        <a href="#team" class="hover:text-teal-400 transition">Team</a>
+        <a href="#contact" class="hover:text-teal-400 transition">Contact</a>
+      </div>
+      <a href="#contact" class="bg-teal-600 hover:bg-teal-500 px-6 py-3 rounded-xl font-semibold transition shadow-md">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-bg min-h-screen flex items-center pt-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/40 to-teal-950/30 animate-gradient-slow"></div>
+    <div class="absolute inset-0 opacity-10 pointer-events-none"><div class="w-full h-full bg-[linear-gradient(to_bottom,transparent_50%,#0ea5e920_50%)] bg-[length:100%_4px] animate-scan"></div></div>
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="particle particle-1"></div><div class="particle particle-2"></div><div class="particle particle-3"></div><div class="particle particle-4"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="max-w-3xl">
+        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-8 animate-fade-in">
+          Smart Solutions.<br>
+          <span class="text-teal-400 animate-pulse-glow">Safe Systems.</span><br>
+          Strong Security.
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-300 mb-10 leading-relaxed animate-fade-in delay-300">
+          Empowering businesses, schools, and organizations across Africa with custom websites, school management systems, and enterprise-grade cybersecurity.
+        </p>
+        <div class="flex flex-wrap gap-5 animate-fade-in delay-500">
+          <a href="#contact" class="bg-teal-500 hover:bg-teal-400 px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-teal-500/20 hover:shadow-teal-500/40">Request Free Demo</a>
+          <a href="#services" class="border-2 border-slate-600 hover:border-teal-400 px-8 py-4 rounded-xl font-bold text-lg transition">Explore Services</a>
+        </div>
+        <div class="mt-12 flex flex-wrap gap-8 text-sm md:text-base animate-fade-in delay-700">
+          <div class="flex items-center gap-2"><i class="fa-solid fa-check text-teal-400"></i> Trusted by Schools & SMEs</div>
+          <div class="flex items-center gap-2"><i class="fa-solid fa-check text-teal-400"></i> Fully Custom Solutions</div>
+          <div class="flex items-center gap-2"><i class="fa-solid fa-check text-teal-400"></i> Proudly African</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-24 bg-slate-900">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Our Core Services</h2>
+        <p class="text-xl text-slate-400 max-w-3xl mx-auto">Tailored digital solutions built for efficiency, scalability, and unbreakable security across the continent.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-teal-500 transition group">
+          <div class="w-16 h-16 bg-blue-900/30 rounded-xl flex items-center justify-center text-4xl mb-6 group-hover:bg-blue-800/40 transition">💻</div>
+          <h3 class="text-2xl font-bold mb-4">Website & Software Development</h3>
+          <p class="text-slate-300 mb-6">Modern, responsive websites and custom software solutions designed specifically for your business goals.</p>
+          <ul class="space-y-2 text-sm text-slate-400">
+            <li><i class="fa-solid fa-check text-teal-400 mr-2"></i>Corporate & E-commerce sites</li>
+            <li><i class="fa-solid fa-check text-teal-400 mr-2"></i>Custom dashboards & tools</li>
+            <li><i class="fa-solid fa-check text-teal-400 mr-2"></i>Full-stack development</li>
+          </ul>
+        </div>
+        <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-teal-500 transition group">
+          <div class="w-16 h-16 bg-emerald-900/30 rounded-xl flex items-center justify-center text-4xl mb-6 group-hover:bg-emerald-800/40 transition">🏫</div>
+          <h3 class="text-2xl font-bold mb-4">School Management System</h3>
+          <p class="text-slate-300 mb-6">All-in-one platform to manage students, attendance, grades, fees, reports — secure and easy to use.</p>
+          <a href="#contact" class="text-teal-400 font-medium inline-flex items-center gap-2 hover:gap-3 transition">Book Free Demo <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-teal-500 transition group">
+          <div class="w-16 h-16 bg-red-900/30 rounded-xl flex items-center justify-center text-4xl mb-6 group-hover:bg-red-800/40 transition">🛡️</div>
+          <h3 class="text-2xl font-bold mb-4">Cybersecurity Solutions</h3>
+          <p class="text-slate-300 mb-6">Proactive protection against threats — audits, monitoring, firewalls, training, and compliance.</p>
+          <ul class="space-y-2 text-sm text-slate-400">
+            <li><i class="fa-solid fa-check text-teal-400 mr-2"></i>24/7 threat monitoring</li>
+            <li><i class="fa-solid fa-check text-teal-400 mr-2"></i>Vulnerability scanning</li>
+            <li><i class="fa-solid fa-check text-teal-400 mr-2"></i>Employee awareness training</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / MISSION VISION / EXECUTIVE SUMMARY -->
+  <section id="about" class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="text-4xl md:text-5xl font-bold mb-8">Who We Are</h2>
+          <div class="space-y-10">
+            <div class="flex gap-6">
+              <div class="text-6xl opacity-80">🎯</div>
+              <div>
+                <h3 class="text-2xl font-semibold mb-3">Our Mission</h3>
+                <p class="text-slate-300 leading-relaxed">To empower organizations and institutions across Africa with innovative digital tools and strong cybersecurity foundations for sustainable growth and peace of mind.</p>
+              </div>
+            </div>
+            <div class="flex gap-6">
+              <div class="text-6xl opacity-80">🌍</div>
+              <div>
+                <h3 class="text-2xl font-semibold mb-3">Our Vision</h3>
+                <p class="text-slate-300 leading-relaxed">To become a leading African technology partner known for excellence in digital innovation and trusted cybersecurity solutions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-10">
+          <h3 class="text-2xl font-bold mb-6">Executive Summary</h3>
+          <p class="text-slate-300 leading-relaxed mb-6">Dutycall is a modern technology solutions company focused on empowering businesses, schools, and organizations across Africa through innovative and secure digital services.</p>
+          <p class="text-teal-400 font-medium">Proudly African • Built for the Continent</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANAGEMENT TEAM (from your business plan) -->
+  <section id="team" class="py-24 bg-slate-900">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Management Team</h2>
+        <p class="text-xl text-slate-400">Experienced professionals in technology development, cybersecurity, and business strategy.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 text-center">
+        <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8">
+          <div class="w-24 h-24 mx-auto bg-slate-700 rounded-2xl mb-6"></div>
+          <h4 class="font-semibold text-lg">Founder & CEO</h4>
+          <p class="text-teal-400 text-sm">Technology Strategy & Innovation</p>
+        </div>
+        <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8">
+          <div class="w-24 h-24 mx-auto bg-slate-700 rounded-2xl mb-6"></div>
+          <h4 class="font-semibold text-lg">CTO</h4>
+          <p class="text-teal-400 text-sm">Software Development & Cybersecurity</p>
+        </div>
+        <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8">
+          <div class="w-24 h-24 mx-auto bg-slate-700 rounded-2xl mb-6"></div>
+          <h4 class="font-semibold text-lg">Head of Operations</h4>
+          <p class="text-teal-400 text-sm">Business Growth & Client Success</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-24 bg-slate-900">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Ready to Get Started?</h2>
+        <p class="text-xl text-slate-400">Request a free consultation or demo — no obligation.</p>
+      </div>
+      <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="space-y-6 bg-slate-800/50 border border-slate-700 p-10 rounded-2xl">
+        <div class="grid md:grid-cols-2 gap-6">
+          <input type="text" name="name" placeholder="Full Name" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-5 py-4 focus:outline-none focus:border-teal-500 transition" />
+          <input type="email" name="email" placeholder="Email Address" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-5 py-4 focus:outline-none focus:border-teal-500 transition" />
+        </div>
+        <input type="tel" name="phone" placeholder="Phone / WhatsApp Number" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-5 py-4 focus:outline-none focus:border-teal-500 transition" />
+        <textarea name="message" rows="5" placeholder="Tell us about your needs..." required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-5 py-4 focus:outline-none focus:border-teal-500 transition"></textarea>
+        <button type="submit" class="w-full bg-teal-600 hover:bg-teal-500 py-5 rounded-xl font-bold text-lg transition shadow-md">Send Message → Let's Talk</button>
+      </form>
+      <p class="text-center mt-8 text-slate-400">
+        Prefer WhatsApp? <a href="https://wa.me/2347080304822" class="text-teal-400 hover:underline font-medium">+234 708 030 4822</a> – Message us directly
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 text-center text-slate-500 text-sm">
+      <div class="flex justify-center items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl">D</div>
+        <span class="text-2xl font-bold text-white">Dutycall</span>
+      </div>
+      <p>© 2026 Dutycall ICT Solutions. All rights reserved.</p>
+      <p class="mt-2">Proudly serving Africa • Smart Solutions. Safe Systems. Strong Security.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
