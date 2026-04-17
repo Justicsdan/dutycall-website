@@ -3,146 +3,916 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Timeless digital solutions for Nigerian businesses and schools — elegant websites, powerful school management systems, and enterprise-grade cybersecurity.">
+  <meta name="description" content="Dutycall — Global digital solutions for businesses and schools. Elegant websites, powerful school management systems, and enterprise-grade cybersecurity.">
   <title>Dutycall — Smart Solutions. Safe Systems. Strong Security.</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --accent: #0f766e;
+      --accent: #0d9488;
+      --accent-light: #14b8a6;
+      --accent-glow: rgba(13, 148, 136, 0.4);
     }
-    .hero-bg {
-      background: linear-gradient(rgba(10, 37, 64, 0.90), rgba(10, 37, 64, 0.90)), 
-                  url('https://picsum.photos/id/1015/1920/1080') center/cover no-repeat fixed;
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #030712;
+      color: #f1f5f9;
+      overflow-x: hidden;
     }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #030712; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+    .mesh-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 20%, rgba(13, 148, 136, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 90% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 50% 50%, rgba(139, 92, 246, 0.04) 0%, transparent 60%);
+      animation: meshMove 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes meshMove {
+      0% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(1deg); }
+      100% { transform: scale(1) rotate(-1deg); }
+    }
+
+    .grid-pattern {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 70%);
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: floatParticle linear infinite;
+    }
+
+    @keyframes floatParticle {
+      0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) translateX(50px) scale(0.3); opacity: 0; }
+    }
+
+    .nav-glass {
+      background: rgba(3, 7, 18, 0.7);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-glass.scrolled {
+      background: rgba(3, 7, 18, 0.92);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    }
+
     .nav-link {
       position: relative;
       transition: color 0.3s ease;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
     }
+
     .nav-link::after {
       content: '';
       position: absolute;
-      bottom: -4px;
-      left: 0;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
       width: 0;
       height: 2px;
-      background-color: var(--accent);
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      border-radius: 1px;
       transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .nav-link:hover::after {
-      width: 100%;
+
+    .nav-link:hover::after,
+    .nav-link.active::after { width: 100%; }
+
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: orbPulse 6s ease-in-out infinite alternate;
     }
-    .service-card {
+
+    @keyframes orbPulse {
+      0% { transform: scale(1); opacity: 0.3; }
+      100% { transform: scale(1.3); opacity: 0.5; }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px 6px 8px;
+      border-radius: 100px;
+      background: rgba(13, 148, 136, 0.1);
+      border: 1px solid rgba(13, 148, 136, 0.2);
+      font-size: 13px;
+      color: #5eead4;
+      animation: badgeFade 1s 0.3s both;
+    }
+
+    @keyframes badgeFade {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      animation: titleReveal 1s 0.5s both;
+    }
+
+    @keyframes titleReveal {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #14b8a6, #06b6d4, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub { animation: subReveal 1s 0.7s both; }
+    @keyframes subReveal {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-actions { animation: actionsReveal 1s 0.9s both; }
+    @keyframes actionsReveal {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      background: linear-gradient(135deg, #0d9488, #0f766e);
+      color: white;
+      font-weight: 600;
+      font-size: 15px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #14b8a6, #0d9488);
+      opacity: 0;
+      transition: opacity 0.4s;
+      border-radius: inherit;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px -10px var(--accent-glow);
+    }
+
+    .btn-primary:hover::before { opacity: 1; }
+    .btn-primary span, .btn-primary i { position: relative; z-index: 1; }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      background: transparent;
+      color: #e2e8f0;
+      font-weight: 600;
+      font-size: 15px;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(13, 148, 136, 0.5);
+      background: rgba(13, 148, 136, 0.05);
+      transform: translateY(-2px);
+    }
+
+    .glass-card {
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 24px;
       transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
     }
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 30px 60px -15px rgba(15, 118, 110, 0.15);
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
     }
-    .classic-heading {
-      font-feature-settings: "kern" 1, "liga" 1;
-      letter-spacing: -0.025em;
+
+    .glass-card:hover {
+      border-color: rgba(13, 148, 136, 0.2);
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.4), 0 0 40px -20px var(--accent-glow);
+    }
+
+    .icon-box {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: all 0.4s;
+    }
+
+    .glass-card:hover .icon-box {
+      transform: scale(1.1) rotate(-5deg);
+    }
+
+    .featured-card {
+      position: relative;
+      background: rgba(15, 23, 42, 0.8);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .featured-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(13, 148, 136, 0.4), rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.2));
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: xor;
+      animation: borderRotate 6s linear infinite;
+    }
+
+    @keyframes borderRotate {
+      0% { background: linear-gradient(0deg, rgba(13,148,136,0.4), rgba(59,130,246,0.3), rgba(139,92,246,0.2)); }
+      33% { background: linear-gradient(120deg, rgba(13,148,136,0.4), rgba(59,130,246,0.3), rgba(139,92,246,0.2)); }
+      66% { background: linear-gradient(240deg, rgba(13,148,136,0.4), rgba(59,130,246,0.3), rgba(139,92,246,0.2)); }
+      100% { background: linear-gradient(360deg, rgba(13,148,136,0.4), rgba(59,130,246,0.3), rgba(139,92,246,0.2)); }
+    }
+
+    .featured-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 30%, rgba(13, 148, 136, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      background: linear-gradient(135deg, #f1f5f9, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .smartedu-preview {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.6);
+    }
+
+    .smartedu-preview .browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 18px;
+      background: rgba(15, 23, 42, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .browser-dot { width: 12px; height: 12px; border-radius: 50%; }
+
+    .browser-url {
+      flex: 1;
+      margin-left: 8px;
+      padding: 6px 14px;
+      background: rgba(30, 41, 59, 0.8);
+      border-radius: 8px;
+      font-size: 12px;
+      color: #64748b;
+      font-family: 'Inter', monospace;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    .testimonial-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .testimonial-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .testimonial-dot.active {
+      background: var(--accent);
+      width: 28px;
+      border-radius: 4px;
+    }
+
+    .marquee-track {
+      display: flex;
+      animation: marquee 30s linear infinite;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 16px 20px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      color: #f1f5f9;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    .form-input::placeholder { color: #475569; }
+
+    .form-input:focus {
+      border-color: rgba(13, 148, 136, 0.5);
+      box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 16px 24px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 9999;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    .toast-success {
+      background: rgba(13, 148, 136, 0.15);
+      border: 1px solid rgba(13, 148, 136, 0.3);
+      color: #5eead4;
+      backdrop-filter: blur(12px);
+    }
+
+    .float-shape {
+      position: absolute;
+      border: 1px solid rgba(13, 148, 136, 0.1);
+      border-radius: 20px;
+      pointer-events: none;
+      animation: floatShape 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatShape {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-30px) rotate(10deg); }
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent-light);
+      margin-bottom: 16px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 20px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 1px;
+    }
+
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 7, 18, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s;
+    }
+
+    .mobile-overlay.open { opacity: 1; pointer-events: all; }
+
+    .mobile-overlay a {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      text-decoration: none;
+      transition: color 0.3s;
+      transform: translateY(20px);
+      opacity: 0;
+    }
+
+    .mobile-overlay.open a { transform: translateY(0); opacity: 1; }
+    .mobile-overlay.open a:nth-child(1) { transition-delay: 0.1s; }
+    .mobile-overlay.open a:nth-child(2) { transition-delay: 0.15s; }
+    .mobile-overlay.open a:nth-child(3) { transition-delay: 0.2s; }
+    .mobile-overlay.open a:nth-child(4) { transition-delay: 0.25s; }
+    .mobile-overlay.open a:nth-child(5) { transition-delay: 0.3s; }
+    .mobile-overlay a:hover { color: #14b8a6; }
+
+    .pulse-ring { position: relative; }
+
+    .pulse-ring::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulseRing 2s ease-out infinite;
+    }
+
+    @keyframes pulseRing {
+      0% { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(2.5); opacity: 0; }
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(13, 148, 136, 0.15);
+      border: 1px solid rgba(13, 148, 136, 0.3);
+      color: #14b8a6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 50;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s;
+      backdrop-filter: blur(8px);
+    }
+
+    .back-to-top.visible { opacity: 1; transform: translateY(0); }
+    .back-to-top:hover { background: rgba(13, 148, 136, 0.25); transform: translateY(-3px); }
+
+    .copy-toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      z-index: 9999;
+      background: rgba(13, 148, 136, 0.15);
+      border: 1px solid rgba(13, 148, 136, 0.3);
+      color: #5eead4;
+      backdrop-filter: blur(12px);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+
+    .copy-toast.show { transform: translateX(-50%) translateY(0); }
+
+    .trust-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased">
+<body>
 
-  <!-- Navbar -->
-  <nav class="fixed top-0 w-full bg-slate-950/95 backdrop-blur-lg z-50 border-b border-slate-800">
-    <div class="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16 py-6 flex items-center justify-between">
-      <div class="flex items-center gap-4">
-        <div class="w-11 h-11 bg-teal-700 rounded-2xl flex items-center justify-center text-white font-bold text-3xl shadow-inner">D</div>
-        <span class="text-3xl font-semibold tracking-tighter">Dutycall</span>
-      </div>
+  <div class="mesh-bg"></div>
+  <div class="grid-pattern"></div>
+  <div id="particles" style="position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;"></div>
 
-      <div class="hidden md:flex items-center gap-10 text-lg font-medium">
-        <a href="#about" class="nav-link hover:text-teal-300">About</a>
-        <a href="#services" class="nav-link hover:text-teal-300">Services</a>
-        <a href="#contact" class="nav-link hover:text-teal-300">Contact</a>
-      </div>
-
-      <a href="https://wa.me/2347080304822?text=Hello%20Dutycall%2C%20I%20would%20like%20a%20quote%20for..." 
-         target="_blank"
-         class="hidden sm:flex items-center px-8 py-3.5 bg-teal-700 hover:bg-teal-600 rounded-full font-semibold text-sm transition-all active:scale-95">
-        Get a Quote
+  <!-- Navigation -->
+  <nav id="navbar" class="nav-glass fixed top-0 w-full z-50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 h-18 flex items-center justify-between" style="height:72px;">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-teal-500/20 group-hover:shadow-teal-500/40 transition-shadow">D</div>
+        <span class="text-xl font-bold tracking-tight">Dutycall</span>
       </a>
-
-      <button id="mobile-btn" class="md:hidden text-3xl">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-slate-950 border-t border-slate-800 py-8">
-      <div class="max-w-screen-2xl mx-auto px-6 flex flex-col gap-8 text-xl">
-        <a href="#about" class="hover:text-teal-300">About</a>
-        <a href="#services" class="hover:text-teal-300">Services</a>
-        <a href="#contact" class="hover:text-teal-300">Contact</a>
-        <a href="https://wa.me/2347080304822?text=Hello%20Dutycall%2C%20I%20would%20like%20a%20quote%20for..." target="_blank"
-           class="bg-teal-700 hover:bg-teal-600 py-4 rounded-full text-center font-semibold">Get a Quote</a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#about" class="nav-link text-slate-300 hover:text-white">About</a>
+        <a href="#services" class="nav-link text-slate-300 hover:text-white">Services</a>
+        <a href="#smartedu" class="nav-link text-slate-300 hover:text-white">SmartEdu</a>
+        <a href="#testimonials" class="nav-link text-slate-300 hover:text-white">Testimonials</a>
+        <a href="#contact" class="nav-link text-slate-300 hover:text-white">Contact</a>
       </div>
+      <div class="hidden md:flex items-center gap-4">
+        <a href="https://smartedu-seven.vercel.app/" target="_blank" class="text-sm font-medium text-slate-400 hover:text-teal-400 transition-colors flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-green-500 pulse-ring relative"></span>
+          Live Demo
+        </a>
+        <a href="#contact" class="btn-primary" style="padding:10px 24px;font-size:13px;">
+          <span>Get Started</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+      <button id="mobile-toggle" class="md:hidden w-10 h-10 flex items-center justify-center text-slate-300 hover:text-white transition-colors" aria-label="Menu">
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
     </div>
   </nav>
 
+  <!-- Mobile menu -->
+  <div id="mobile-overlay" class="mobile-overlay">
+    <button id="mobile-close" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center text-slate-300 hover:text-white">
+      <i class="fa-solid fa-xmark text-2xl"></i>
+    </button>
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#smartedu" class="mobile-link">SmartEdu</a>
+    <a href="#testimonials" class="mobile-link">Testimonials</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="https://smartedu-seven.vercel.app/" target="_blank" class="btn-primary mt-4" style="font-size:16px;">
+      <span>Launch SmartEdu</span>
+      <i class="fa-solid fa-external-link-alt text-sm"></i>
+    </a>
+  </div>
+
   <!-- Hero -->
-  <section class="hero-bg min-h-screen flex items-center">
-    <div class="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16 pt-32 pb-20">
-      <div class="max-w-2xl">
-        <h1 class="classic-heading text-5xl md:text-6xl lg:text-7xl font-bold leading-none tracking-tighter mb-8">
-          Smart Solutions.<br>
-          <span class="text-teal-400">Safe Systems.</span><br>
-          Strong Security.
-        </h1>
-        <p class="text-lg md:text-xl lg:text-2xl text-slate-200 max-w-lg leading-relaxed">
-          Elegant, secure digital solutions for Nigerian businesses and schools — built with timeless excellence and local understanding.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-5 mt-12">
-          <a href="#contact" 
-             class="bg-white text-slate-950 px-10 py-5 rounded-full font-semibold text-lg hover:bg-slate-100 transition-all active:scale-95 shadow-xl text-center">
-            Request Free Demo
-          </a>
-          <a href="#services" 
-             class="border border-slate-400 hover:border-teal-400 px-10 py-5 rounded-full font-semibold text-lg transition-all text-center">
-            Explore Services
-          </a>
+  <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <div class="hero-orb" style="width:600px;height:600px;background:rgba(13,148,136,0.12);top:-10%;right:-10%;"></div>
+    <div class="hero-orb" style="width:400px;height:400px;background:rgba(59,130,246,0.08);bottom:10%;left:-5%;animation-delay:2s;"></div>
+    <div class="float-shape" style="width:80px;height:80px;top:20%;right:15%;animation-delay:0s;"></div>
+    <div class="float-shape" style="width:50px;height:50px;top:60%;right:25%;animation-delay:2s;border-radius:50%;"></div>
+    <div class="float-shape" style="width:120px;height:120px;bottom:15%;left:10%;animation-delay:4s;"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full py-20">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <div class="hero-badge">
+            <span class="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center">
+              <i class="fa-solid fa-globe text-green-400 text-xs"></i>
+            </span>
+            Serving clients across 4 continents
+          </div>
+
+          <h1 class="hero-title mt-8 mb-6">
+            Smart Solutions.<br>
+            <span class="gradient-text">Safe Systems.</span><br>
+            Strong Security.
+          </h1>
+
+          <p class="hero-sub text-lg md:text-xl text-slate-400 max-w-lg leading-relaxed mb-10">
+            We build elegant websites, powerful school management platforms, and enterprise-grade cybersecurity — trusted by organisations worldwide.
+          </p>
+
+          <div class="hero-actions flex flex-col sm:flex-row gap-4">
+            <a href="#contact" class="btn-primary">
+              <span>Request Free Demo</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="https://smartedu-seven.vercel.app/" target="_blank" class="btn-secondary">
+              <i class="fa-solid fa-play text-teal-400 text-sm"></i>
+              <span>Explore SmartEdu</span>
+            </a>
+          </div>
+
+          <!-- Trust bar — no names -->
+          <div class="hero-actions mt-12 flex items-center gap-8 flex-wrap">
+            <div class="flex items-center gap-4">
+              <div class="trust-icon bg-teal-500/10 text-teal-400"><i class="fa-solid fa-building"></i></div>
+              <div>
+                <div class="font-bold text-white text-lg">200+</div>
+                <div class="text-slate-500 text-xs">Organisations</div>
+              </div>
+            </div>
+            <div class="w-px h-10 bg-white/10 hidden sm:block"></div>
+            <div class="flex items-center gap-4">
+              <div class="trust-icon bg-blue-500/10 text-blue-400"><i class="fa-solid fa-star"></i></div>
+              <div>
+                <div class="font-bold text-white text-lg">4.9/5</div>
+                <div class="text-slate-500 text-xs">Avg. Rating</div>
+              </div>
+            </div>
+            <div class="w-px h-10 bg-white/10 hidden sm:block"></div>
+            <div class="flex items-center gap-4">
+              <div class="trust-icon bg-purple-500/10 text-purple-400"><i class="fa-solid fa-earth-americas"></i></div>
+              <div>
+                <div class="font-bold text-white text-lg">15+</div>
+                <div class="text-slate-500 text-xs">Countries</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SmartEdu Preview -->
+        <div class="hidden lg:block reveal">
+          <div class="smartedu-preview">
+            <div class="browser-bar">
+              <div class="browser-dot" style="background:#ff5f57;"></div>
+              <div class="browser-dot" style="background:#febc2e;"></div>
+              <div class="browser-dot" style="background:#28c840;"></div>
+              <div class="browser-url">
+                <i class="fa-solid fa-lock text-green-500 mr-2" style="font-size:10px;"></i>
+                smartedu-seven.vercel.app
+              </div>
+              <a href="https://smartedu-seven.vercel.app/" target="_blank" class="text-slate-500 hover:text-white transition-colors ml-2">
+                <i class="fa-solid fa-external-link-alt text-xs"></i>
+              </a>
+            </div>
+            <div class="relative" style="height:380px;overflow:hidden;background:linear-gradient(135deg,#0f172a,#1e293b);">
+              <div class="absolute inset-0 p-5">
+                <div class="flex items-center justify-between mb-5">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-teal-500/20 flex items-center justify-center"><i class="fa-solid fa-graduation-cap text-teal-400 text-xs"></i></div>
+                    <span class="text-sm font-semibold text-slate-200">SmartEdu Dashboard</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center"><i class="fa-solid fa-bell text-slate-400 text-xs"></i></div>
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-teal-400 to-cyan-600 flex items-center justify-center text-xs font-bold">A</div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-4 gap-3 mb-5">
+                  <div class="bg-slate-800/60 rounded-xl p-3 border border-slate-700/50">
+                    <div class="text-xs text-slate-500 mb-1">Students</div>
+                    <div class="text-lg font-bold text-white">2,847</div>
+                    <div class="text-xs text-green-400 mt-1">↑ 12%</div>
+                  </div>
+                  <div class="bg-slate-800/60 rounded-xl p-3 border border-slate-700/50">
+                    <div class="text-xs text-slate-500 mb-1">Teachers</div>
+                    <div class="text-lg font-bold text-white">156</div>
+                    <div class="text-xs text-green-400 mt-1">↑ 5%</div>
+                  </div>
+                  <div class="bg-slate-800/60 rounded-xl p-3 border border-slate-700/50">
+                    <div class="text-xs text-slate-500 mb-1">Classes</div>
+                    <div class="text-lg font-bold text-white">48</div>
+                    <div class="text-xs text-blue-400 mt-1">Active</div>
+                  </div>
+                  <div class="bg-slate-800/60 rounded-xl p-3 border border-slate-700/50">
+                    <div class="text-xs text-slate-500 mb-1">Revenue</div>
+                    <div class="text-lg font-bold text-white">$42K</div>
+                    <div class="text-xs text-green-400 mt-1">↑ 23%</div>
+                  </div>
+                </div>
+                <div class="bg-slate-800/40 rounded-xl p-4 border border-slate-700/50 mb-4">
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-medium text-slate-300">Enrollment Trend</span>
+                    <span class="text-xs px-2 py-0.5 rounded-full bg-teal-500/10 text-teal-400">Monthly</span>
+                  </div>
+                  <div class="flex items-end gap-2 h-24">
+                    <div class="flex-1 bg-teal-500/20 rounded-t" style="height:40%;"></div>
+                    <div class="flex-1 bg-teal-500/30 rounded-t" style="height:55%;"></div>
+                    <div class="flex-1 bg-teal-500/20 rounded-t" style="height:45%;"></div>
+                    <div class="flex-1 bg-teal-500/40 rounded-t" style="height:65%;"></div>
+                    <div class="flex-1 bg-teal-500/30 rounded-t" style="height:50%;"></div>
+                    <div class="flex-1 bg-teal-500/50 rounded-t" style="height:75%;"></div>
+                    <div class="flex-1 bg-teal-500/40 rounded-t" style="height:60%;"></div>
+                    <div class="flex-1 bg-teal-500/60 rounded-t" style="height:85%;"></div>
+                    <div class="flex-1 bg-teal-500/50 rounded-t" style="height:70%;"></div>
+                    <div class="flex-1 bg-teal-500/70 rounded-t" style="height:90%;"></div>
+                    <div class="flex-1 bg-teal-500/60 rounded-t" style="height:80%;"></div>
+                    <div class="flex-1 bg-teal-400 rounded-t" style="height:100%;"></div>
+                  </div>
+                </div>
+                <div class="bg-slate-800/40 rounded-xl p-3 border border-slate-700/50">
+                  <span class="text-xs font-medium text-slate-300">Recent Activity</span>
+                  <div class="mt-2 space-y-2">
+                    <div class="flex items-center gap-3 text-xs">
+                      <div class="w-6 h-6 rounded-full bg-green-500/10 flex items-center justify-center"><i class="fa-solid fa-check text-green-400" style="font-size:8px;"></i></div>
+                      <span class="text-slate-400">New student enrolled — Grade 10A</span>
+                      <span class="text-slate-600 ml-auto">2m ago</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs">
+                      <div class="w-6 h-6 rounded-full bg-blue-500/10 flex items-center justify-center"><i class="fa-solid fa-file text-blue-400" style="font-size:8px;"></i></div>
+                      <span class="text-slate-400">Exam results published — Term 2</span>
+                      <span class="text-slate-600 ml-auto">15m ago</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#0f172a] to-transparent"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-bounce" style="animation-duration:3s;">
+      <span class="text-xs text-slate-500 tracking-widest uppercase">Scroll</span>
+      <i class="fa-solid fa-chevron-down text-slate-600 text-sm"></i>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <section class="relative z-10 py-12 border-y border-white/5 overflow-hidden">
+    <div class="marquee-track">
+      <div class="flex items-center gap-16 px-8 text-slate-600 text-sm font-medium whitespace-nowrap">
+        <span class="flex items-center gap-3"><i class="fa-solid fa-shield-halved text-teal-600"></i> ISO 27001 Compliant</span>
+        <span>•</span>
+        <span class="flex items-center gap-3"><i class="fa-solid fa-lock text-teal-600"></i> End-to-End Encryption</span>
+        <span>•</span>
+        <span class="flex items-center gap-3"><i class="fa-solid fa-cloud text-teal-600"></i> 99.9% Uptime SLA</span>
+        <span>•</span>
+        <span class="flex items-center gap-3"><i class="fa-solid fa-globe text-teal-600"></i> Serving 15+ Countries</span>
+        <span>•</span>
+        <span class="flex items-center gap-3"><i class="fa-solid fa-headset text-teal-600"></i> 24/7 Global Support</span>
+        <span>•</span>
+        <span class="flex items-center gap-3"><i class="fa-solid fa-code text-teal-600"></i> Open Standards</span>
+        <span>•</span>
+        <span class="flex items-center gap-3"><i class="fa-solid fa-certificate text-teal-600"></i> SOC 2 Ready</span>
+        <span>•</span>
+      </div>
+      <div class="flex items-center gap-16 px-8 text-slate-600 text-sm font-medium whitespace-nowrap" aria-hidden="true">
+        <span class="flex items-center gap-3"><i class="fa-solid fa-shield-halved text-teal-600"></i> ISO 27001 Compliant</span>
+        <span>•</span>
+        <span class="flex items-center gap-3"><i class="fa-solid fa-lock text-teal-600"></i> End-to-End Encryption</span>
+        <span>•</span>
+        <span class="flex items-center gap-3"><i class="fa-solid fa-cloud text-teal-600"></i> 99.9% Uptime SLA</span>
+        <span>•</span>
+        <span class="flex items-center gap-3"><i class="fa-solid fa-globe text-teal-600"></i> Serving 15+ Countries</span>
+        <span>•</span>
+        <span class="flex items-center gap-3"><i class="fa-solid fa-headset text-teal-600"></i> 24/7 Global Support</span>
+        <span>•</span>
+        <span class="flex items-center gap-3"><i class="fa-solid fa-code text-teal-600"></i> Open Standards</span>
+        <span>•</span>
+        <span class="flex items-center gap-3"><i class="fa-solid fa-certificate text-teal-600"></i> SOC 2 Ready</span>
+        <span>•</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="relative z-10 py-20">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center reveal">
+          <div class="stat-number" data-target="200">0</div>
+          <div class="text-slate-500 text-sm mt-2 font-medium">Organisations Served</div>
+        </div>
+        <div class="text-center reveal reveal-delay-1">
+          <div class="stat-number" data-target="50">0</div>
+          <div class="text-slate-500 text-sm mt-2 font-medium">Schools Empowered</div>
+        </div>
+        <div class="text-center reveal reveal-delay-2">
+          <div class="stat-number" data-target="15">0</div>
+          <div class="text-slate-500 text-sm mt-2 font-medium">Countries Reached</div>
+        </div>
+        <div class="text-center reveal reveal-delay-3">
+          <div class="stat-number" data-target="99">0</div>
+          <div class="text-slate-500 text-sm mt-2 font-medium">% Client Satisfaction</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- About -->
-  <section id="about" class="py-24 lg:py-32 bg-slate-900">
-    <div class="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16">
+  <section id="about" class="relative z-10 py-24">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         <div>
-          <h2 class="classic-heading text-4xl md:text-5xl font-bold mb-10">Our Mission & Vision</h2>
-          <div class="space-y-12">
-            <div class="flex gap-7">
-              <div class="w-14 h-14 bg-teal-500/10 rounded-3xl flex items-center justify-center text-4xl flex-shrink-0">🎯</div>
+          <div class="section-label reveal">Who We Are</div>
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8 reveal reveal-delay-1">
+            Technology partner for the <span class="gradient-text">modern organisation</span>
+          </h2>
+          <p class="text-slate-400 text-lg leading-relaxed mb-10 reveal reveal-delay-2">
+            Dutycall delivers world-class digital solutions — from stunning websites to intelligent school management platforms and robust cybersecurity. We combine global standards with deep local understanding.
+          </p>
+          <div class="space-y-6">
+            <div class="flex gap-5 reveal reveal-delay-2">
+              <div class="icon-box bg-teal-500/10 text-teal-400 flex-shrink-0"><i class="fa-solid fa-bullseye"></i></div>
               <div>
-                <h3 class="text-2xl font-semibold mb-3">Mission</h3>
-                <p class="text-slate-300 text-lg leading-relaxed">To deliver secure, elegant digital tools that empower Nigerian organisations to thrive with confidence and efficiency.</p>
+                <h4 class="font-semibold text-lg mb-1">Our Mission</h4>
+                <p class="text-slate-400 leading-relaxed">To deliver secure, elegant digital tools that empower organisations worldwide to thrive with confidence and efficiency.</p>
               </div>
             </div>
-            <div class="flex gap-7">
-              <div class="w-14 h-14 bg-teal-500/10 rounded-3xl flex items-center justify-center text-4xl flex-shrink-0">🌍</div>
+            <div class="flex gap-5 reveal reveal-delay-3">
+              <div class="icon-box bg-blue-500/10 text-blue-400 flex-shrink-0"><i class="fa-solid fa-eye"></i></div>
               <div>
-                <h3 class="text-2xl font-semibold mb-3">Vision</h3>
-                <p class="text-slate-300 text-lg leading-relaxed">To be Nigeria’s most respected technology partner for enduring digital excellence and cybersecurity.</p>
+                <h4 class="font-semibold text-lg mb-1">Our Vision</h4>
+                <p class="text-slate-400 leading-relaxed">To be a globally respected technology partner for enduring digital excellence and unwavering cybersecurity.</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="bg-slate-800 border border-slate-700 rounded-3xl p-12">
-          <h3 class="text-3xl font-semibold mb-6">About Dutycall</h3>
-          <p class="text-slate-300 text-lg leading-relaxed">
-            Proudly Nigerian technology company delivering world-class websites, school management systems, and enterprise cybersecurity — crafted with precision and local insight.
-          </p>
-          <div class="mt-10 text-sm text-slate-400 flex items-center gap-8">
-            <div>Proudly Nigerian</div>
-            <div>•</div>
-            <div>Jos, Nigeria</div>
+        <div class="reveal reveal-delay-2">
+          <div class="glass-card p-10">
+            <div class="flex items-center gap-4 mb-8">
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-500/20 to-cyan-500/20 flex items-center justify-center"><i class="fa-solid fa-building text-teal-400"></i></div>
+              <div>
+                <h3 class="text-xl font-semibold">Dutycall ICT Solutions</h3>
+                <p class="text-slate-500 text-sm">Est. 2020 • Global Operations</p>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between py-3 border-b border-white/5">
+                <span class="text-slate-400 text-sm">Headquarters</span>
+                <span class="font-medium text-sm">Jos, Nigeria</span>
+              </div>
+              <div class="flex items-center justify-between py-3 border-b border-white/5">
+                <span class="text-slate-400 text-sm">Global Reach</span>
+                <span class="font-medium text-sm">Africa, Europe, Asia, Americas</span>
+              </div>
+              <div class="flex items-center justify-between py-3 border-b border-white/5">
+                <span class="text-slate-400 text-sm">Team Size</span>
+                <span class="font-medium text-sm">30+ Specialists</span>
+              </div>
+              <div class="flex items-center justify-between py-3 border-b border-white/5">
+                <span class="text-slate-400 text-sm">Core Stack</span>
+                <span class="font-medium text-sm">React, Next.js, Node, Python</span>
+              </div>
+              <div class="flex items-center justify-between py-3">
+                <span class="text-slate-400 text-sm">Certifications</span>
+                <span class="font-medium text-sm flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span> Verified & Certified</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -150,140 +920,633 @@
   </section>
 
   <!-- Services -->
-  <section id="services" class="py-24 lg:py-32">
-    <div class="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16">
+  <section id="services" class="relative z-10 py-24">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="classic-heading text-4xl md:text-5xl font-bold">Our Services</h2>
-        <p class="text-slate-400 text-xl mt-4 max-w-md mx-auto">Timeless solutions engineered for performance, security, and lasting value.</p>
+        <div class="section-label justify-center reveal">What We Do</div>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight reveal reveal-delay-1">Our Core Services</h2>
+        <p class="text-slate-400 text-lg mt-4 max-w-xl mx-auto reveal reveal-delay-2">Timeless solutions engineered for performance, security, and lasting value.</p>
       </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="service-card bg-slate-900 border border-slate-800 rounded-3xl p-10">
-          <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center text-5xl mb-8">💻</div>
-          <h3 class="text-2xl font-semibold mb-4">Website & Software Development</h3>
-          <p class="text-slate-300 mb-8">Beautiful, responsive websites and custom software built to the highest standards.</p>
-          <ul class="space-y-4 text-slate-400">
-            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400"></i> Corporate & e-commerce sites</li>
-            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400"></i> Custom dashboards & tools</li>
-            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400"></i> Full-stack development</li>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="glass-card p-8 reveal">
+          <div class="icon-box bg-blue-500/10 text-blue-400 mb-6"><i class="fa-solid fa-code"></i></div>
+          <h3 class="text-xl font-semibold mb-3">Website & Software Development</h3>
+          <p class="text-slate-400 leading-relaxed mb-6">Beautiful, responsive websites and custom software built to the highest global standards.</p>
+          <ul class="space-y-3 text-sm text-slate-400">
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400 text-xs"></i> Corporate & e-commerce platforms</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400 text-xs"></i> Custom dashboards & SaaS tools</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400 text-xs"></i> Full-stack development & APIs</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400 text-xs"></i> Progressive web apps (PWAs)</li>
           </ul>
         </div>
-
-        <div class="service-card bg-slate-900 border border-slate-800 rounded-3xl p-10 relative">
-          <div class="absolute top-8 right-8 bg-emerald-500/10 text-emerald-400 text-xs font-medium px-5 py-2 rounded-full">Most Popular</div>
-          <div class="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-5xl mb-8">🏫</div>
-          <h3 class="text-2xl font-semibold mb-4">School Management System</h3>
-          <p class="text-slate-300 mb-8">Complete, secure platform for admissions, attendance, grading, fees, and parent communication.</p>
-          <a href="#contact" class="text-teal-400 font-medium inline-flex items-center gap-2 hover:gap-4 transition-all">Book a Demo <span class="text-xl">→</span></a>
+        <div class="featured-card p-8 reveal reveal-delay-1 lg:translate-y-[-8px]">
+          <div class="relative z-10">
+            <div class="flex items-center justify-between mb-6">
+              <div class="icon-box bg-emerald-500/10 text-emerald-400"><i class="fa-solid fa-graduation-cap"></i></div>
+              <span class="text-xs font-semibold px-4 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"><i class="fa-solid fa-fire mr-1"></i> Most Popular</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">School Management System</h3>
+            <p class="text-slate-400 leading-relaxed mb-6">Complete, secure platform for admissions, attendance, grading, fees, and parent communication.</p>
+            <div class="flex flex-col gap-3 text-sm text-slate-400 mb-8">
+              <div class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400 text-xs"></i> SmartEdu — Live & Ready</div>
+              <div class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400 text-xs"></i> Multi-school & multi-campus</div>
+              <div class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400 text-xs"></i> Automated grading & reports</div>
+              <div class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400 text-xs"></i> Parent & student portals</div>
+            </div>
+            <a href="https://smartedu-seven.vercel.app/" target="_blank" class="btn-primary w-full justify-center" style="padding:14px 24px;font-size:14px;">
+              <span>Launch SmartEdu Live</span>
+              <i class="fa-solid fa-external-link-alt text-xs"></i>
+            </a>
+          </div>
         </div>
-
-        <div class="service-card bg-slate-900 border border-slate-800 rounded-3xl p-10">
-          <div class="w-16 h-16 bg-red-500/10 rounded-2xl flex items-center justify-center text-5xl mb-8">🛡️</div>
-          <h3 class="text-2xl font-semibold mb-4">Cybersecurity Solutions</h3>
-          <p class="text-slate-300 mb-8">Proactive protection, monitoring, and compliance to keep your organisation secure.</p>
-          <ul class="space-y-4 text-slate-400">
-            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400"></i> Security audits</li>
-            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400"></i> 24/7 monitoring</li>
-            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400"></i> Staff training</li>
+        <div class="glass-card p-8 reveal reveal-delay-2">
+          <div class="icon-box bg-red-500/10 text-red-400 mb-6"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3 class="text-xl font-semibold mb-3">Cybersecurity Solutions</h3>
+          <p class="text-slate-400 leading-relaxed mb-6">Proactive protection, monitoring, and compliance to keep your organisation secure.</p>
+          <ul class="space-y-3 text-sm text-slate-400">
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400 text-xs"></i> Penetration testing & audits</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400 text-xs"></i> 24/7 threat monitoring (SOC)</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400 text-xs"></i> Staff awareness training</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-teal-400 text-xs"></i> Compliance (GDPR, ISO 27001)</li>
           </ul>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 mt-6">
+        <div class="glass-card p-8 reveal">
+          <div class="icon-box bg-purple-500/10 text-purple-400 mb-5"><i class="fa-solid fa-mobile-screen-button"></i></div>
+          <h3 class="text-lg font-semibold mb-2">Mobile App Development</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Cross-platform mobile apps for iOS and Android with native performance.</p>
+        </div>
+        <div class="glass-card p-8 reveal reveal-delay-1">
+          <div class="icon-box bg-amber-500/10 text-amber-400 mb-5"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+          <h3 class="text-lg font-semibold mb-2">Cloud & DevOps</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Scalable cloud infrastructure, CI/CD pipelines, and container orchestration.</p>
+        </div>
+        <div class="glass-card p-8 reveal reveal-delay-2">
+          <div class="icon-box bg-cyan-500/10 text-cyan-400 mb-5"><i class="fa-solid fa-brain"></i></div>
+          <h3 class="text-lg font-semibold mb-2">AI & Data Analytics</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Intelligent automation, predictive analytics, and machine learning integrations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SmartEdu Deep Dive -->
+  <section id="smartedu" class="relative z-10 py-24 overflow-hidden">
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 50% at 50% 50%, rgba(13,148,136,0.06) 0%, transparent 60%);"></div>
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <div class="section-label reveal">Flagship Product</div>
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6 reveal reveal-delay-1">Meet <span class="gradient-text">SmartEdu</span></h2>
+          <p class="text-slate-400 text-lg leading-relaxed mb-8 reveal reveal-delay-2">
+            A complete school management ecosystem that handles everything from admissions to graduation — beautifully designed, incredibly powerful, and secure by default.
+          </p>
+          <div class="space-y-5 mb-10">
+            <div class="flex items-start gap-4 reveal reveal-delay-2">
+              <div class="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fa-solid fa-user-plus text-teal-400 text-sm"></i></div>
+              <div>
+                <h4 class="font-semibold mb-1">Admissions & Enrollment</h4>
+                <p class="text-slate-400 text-sm">Digital application forms, automated screening, and seamless onboarding for students and staff.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 reveal reveal-delay-3">
+              <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fa-solid fa-chart-line text-blue-400 text-sm"></i></div>
+              <div>
+                <h4 class="font-semibold mb-1">Grades & Analytics</h4>
+                <p class="text-slate-400 text-sm">Automated grade computation, visual analytics dashboards, and instant report card generation.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 reveal reveal-delay-4">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fa-solid fa-wallet text-purple-400 text-sm"></i></div>
+              <div>
+                <h4 class="font-semibold mb-1">Fees & Payments</h4>
+                <p class="text-slate-400 text-sm">Integrated payment gateways, automated reminders, fee defaulter tracking, and financial reports.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 reveal reveal-delay-4">
+              <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fa-solid fa-comments text-amber-400 text-sm"></i></div>
+              <div>
+                <h4 class="font-semibold mb-1">Parent Communication</h4>
+                <p class="text-slate-400 text-sm">Real-time notifications, SMS alerts, parent portals, and teacher-parent messaging.</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 reveal reveal-delay-4">
+            <a href="https://smartedu-seven.vercel.app/" target="_blank" class="btn-primary"><span>Try SmartEdu Free</span><i class="fa-solid fa-arrow-right"></i></a>
+            <a href="#contact" class="btn-secondary"><i class="fa-solid fa-calendar text-teal-400 text-sm"></i><span>Book a Demo</span></a>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4 reveal reveal-delay-2">
+          <div class="glass-card p-6 text-center">
+            <div class="text-3xl mb-3">📋</div>
+            <h4 class="font-semibold text-sm mb-1">Attendance</h4>
+            <p class="text-slate-500 text-xs">Biometric & QR code</p>
+          </div>
+          <div class="glass-card p-6 text-center">
+            <div class="text-3xl mb-3">📚</div>
+            <h4 class="font-semibold text-sm mb-1">Curriculum</h4>
+            <p class="text-slate-500 text-xs">Lesson planning</p>
+          </div>
+          <div class="glass-card p-6 text-center">
+            <div class="text-3xl mb-3">🚌</div>
+            <h4 class="font-semibold text-sm mb-1">Transport</h4>
+            <p class="text-slate-500 text-xs">GPS tracking</p>
+          </div>
+          <div class="glass-card p-6 text-center">
+            <div class="text-3xl mb-3">🍽️</div>
+            <h4 class="font-semibold text-sm mb-1">Cafeteria</h4>
+            <p class="text-slate-500 text-xs">Meal management</p>
+          </div>
+          <div class="glass-card p-6 text-center">
+            <div class="text-3xl mb-3">🏠</div>
+            <h4 class="font-semibold text-sm mb-1">Hostel</h4>
+            <p class="text-slate-500 text-xs">Room allocation</p>
+          </div>
+          <div class="glass-card p-6 text-center">
+            <div class="text-3xl mb-3">📊</div>
+            <h4 class="font-semibold text-sm mb-1">Reports</h4>
+            <p class="text-slate-500 text-xs">Custom analytics</p>
+          </div>
+          <div class="glass-card p-6 text-center col-span-2" style="background:linear-gradient(135deg, rgba(13,148,136,0.1), rgba(59,130,246,0.05));">
+            <div class="flex items-center justify-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center"><i class="fa-solid fa-rocket text-green-400"></i></div>
+              <div class="text-left">
+                <h4 class="font-semibold text-sm">And much more...</h4>
+                <p class="text-slate-500 text-xs">Library, timetable, exams, notices, inventory</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Why Choose Us -->
-  <section class="py-24 lg:py-32 bg-slate-900">
-    <div class="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16">
-      <div class="grid lg:grid-cols-12 gap-16 items-center">
-        <div class="lg:col-span-7">
-          <h2 class="classic-heading text-4xl md:text-5xl font-bold mb-12">Why organisations trust Dutycall</h2>
-          <div class="space-y-12">
-            <div class="flex gap-7">
-              <div class="text-6xl flex-shrink-0">🇳🇬</div>
-              <div>
-                <h4 class="text-2xl font-semibold mb-3">Built for Nigeria</h4>
-                <p class="text-slate-300 text-lg">Designed for local realities — power stability, connectivity, and budget-conscious excellence.</p>
+  <section class="relative z-10 py-24">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <div class="section-label justify-center reveal">Why Dutycall</div>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight reveal reveal-delay-1">Why organisations trust us</h2>
+      </div>
+      <div class="grid lg:grid-cols-12 gap-8">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="glass-card p-8 flex gap-6 reveal">
+            <div class="text-4xl flex-shrink-0">🌍</div>
+            <div>
+              <h4 class="text-xl font-semibold mb-2">Global Standards, Local Insight</h4>
+              <p class="text-slate-400 leading-relaxed">We bring world-class engineering methodologies while understanding the unique challenges of every market we serve — from connectivity realities to regulatory requirements.</p>
+            </div>
+          </div>
+          <div class="glass-card p-8 flex gap-6 reveal reveal-delay-1">
+            <div class="text-4xl flex-shrink-0">🔒</div>
+            <div>
+              <h4 class="text-xl font-semibold mb-2">Security by Design</h4>
+              <p class="text-slate-400 leading-relaxed">Every line of code we write is security-audited. We bake in protection from architecture through deployment — not as an afterthought.</p>
+            </div>
+          </div>
+          <div class="glass-card p-8 flex gap-6 reveal reveal-delay-2">
+            <div class="text-4xl flex-shrink-0">⚡</div>
+            <div>
+              <h4 class="text-xl font-semibold mb-2">Lightning-Fast Delivery</h4>
+              <p class="text-slate-400 leading-relaxed">Agile development with rapid iterations. Most MVPs ship in 4–6 weeks, with continuous improvement based on real user feedback.</p>
+            </div>
+          </div>
+          <div class="glass-card p-8 flex gap-6 reveal reveal-delay-3">
+            <div class="text-4xl flex-shrink-0">🤝</div>
+            <div>
+              <h4 class="text-xl font-semibold mb-2">Lifetime Partnership</h4>
+              <p class="text-slate-400 leading-relaxed">We don't just build and disappear. Every client gets lifetime support, free updates, and a dedicated account manager.</p>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-5 flex flex-col gap-6">
+          <div class="glass-card p-8 reveal reveal-delay-1">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center"><i class="fa-solid fa-trophy text-amber-400"></i></div>
+              <h4 class="font-semibold">Awards & Recognition</h4>
+            </div>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between py-3 border-b border-white/5">
+                <span class="text-slate-400 text-sm">Best EdTech Solution 2024</span>
+                <i class="fa-solid fa-award text-amber-400"></i>
+              </div>
+              <div class="flex items-center justify-between py-3 border-b border-white/5">
+                <span class="text-slate-400 text-sm">Top 50 African Startups</span>
+                <i class="fa-solid fa-award text-amber-400"></i>
+              </div>
+              <div class="flex items-center justify-between py-3">
+                <span class="text-slate-400 text-sm">ISO 27001 Certification</span>
+                <i class="fa-solid fa-certificate text-amber-400"></i>
               </div>
             </div>
-            <div class="flex gap-7">
-              <div class="text-6xl flex-shrink-0">🔒</div>
+          </div>
+          <div class="glass-card p-8 reveal reveal-delay-2" style="background:linear-gradient(135deg, rgba(13,148,136,0.08), rgba(59,130,246,0.04));">
+            <i class="fa-solid fa-quote-left text-teal-500/30 text-3xl mb-4"></i>
+            <p class="text-slate-200 text-lg leading-relaxed italic mb-5">"Dutycall delivered elegance, security, and simplicity. Our school runs smoother than ever, and parents love the real-time updates."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500/20 to-cyan-500/20 flex items-center justify-center"><i class="fa-solid fa-school text-teal-400 text-sm"></i></div>
               <div>
-                <h4 class="text-2xl font-semibold mb-3">Security First</h4>
-                <p class="text-slate-300 text-lg">Enterprise-grade protection built into every solution from day one.</p>
-              </div>
-            </div>
-            <div class="flex gap-7">
-              <div class="text-6xl flex-shrink-0">⚡</div>
-              <div>
-                <h4 class="text-2xl font-semibold mb-3">Lightning Support from Jos</h4>
-                <p class="text-slate-300 text-lg">Same-day response from our dedicated Jos team. Lifetime updates included.</p>
+                <div class="font-medium text-sm">School Director</div>
+                <div class="text-slate-500 text-xs">International School, West Africa</div>
               </div>
             </div>
           </div>
         </div>
-        <div class="lg:col-span-5 bg-slate-800 rounded-3xl p-12 border border-slate-700">
-          <p class="italic text-2xl leading-relaxed text-slate-200">
-            “Dutycall delivered elegance, security, and simplicity. Our school now runs smoother than ever.”
-          </p>
-          <div class="mt-10 text-teal-400 font-medium">— Principal, Northern Nigerian School</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials — no names, just roles/orgs -->
+  <section id="testimonials" class="relative z-10 py-24 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <div class="section-label justify-center reveal">Testimonials</div>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight reveal reveal-delay-1">What our clients say</h2>
+      </div>
+      <div class="relative reveal reveal-delay-2">
+        <div class="overflow-hidden rounded-3xl">
+          <div class="testimonial-track" id="testimonialTrack">
+            <div class="w-full flex-shrink-0 px-2">
+              <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-card p-8">
+                  <div class="flex items-center gap-1 text-amber-400 text-sm mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                  <p class="text-slate-300 leading-relaxed mb-6">"SmartEdu transformed how we manage 3,000 students. Attendance, grades, fees — everything in one place. Absolutely brilliant."</p>
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/20 to-indigo-500/20 flex items-center justify-center"><i class="fa-solid fa-school text-blue-400 text-sm"></i></div>
+                    <div><div class="font-medium text-sm">School Director</div><div class="text-slate-500 text-xs">Private School, Lagos</div></div>
+                  </div>
+                </div>
+                <div class="glass-card p-8">
+                  <div class="flex items-center gap-1 text-amber-400 text-sm mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                  <p class="text-slate-300 leading-relaxed mb-6">"The cybersecurity audit revealed vulnerabilities we didn't know existed. Our entire infrastructure was secured in 2 weeks."</p>
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center"><i class="fa-solid fa-building text-purple-400 text-sm"></i></div>
+                    <div><div class="font-medium text-sm">Chief Technology Officer</div><div class="text-slate-500 text-xs">FinTech Company, London</div></div>
+                  </div>
+                </div>
+                <div class="glass-card p-8">
+                  <div class="flex items-center gap-1 text-amber-400 text-sm mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                  <p class="text-slate-300 leading-relaxed mb-6">"Our e-commerce revenue increased 340% after Dutycall rebuilt our platform. Fast, beautiful, and conversion-optimized."</p>
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center"><i class="fa-solid fa-store text-amber-400 text-sm"></i></div>
+                    <div><div class="font-medium text-sm">Founder</div><div class="text-slate-500 text-xs">E-commerce Brand, Dubai</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full flex-shrink-0 px-2">
+              <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-card p-8">
+                  <div class="flex items-center gap-1 text-amber-400 text-sm mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                  <p class="text-slate-300 leading-relaxed mb-6">"Parent engagement went up 200% after we deployed SmartEdu. The real-time notification system is a game-changer."</p>
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500/20 to-cyan-500/20 flex items-center justify-center"><i class="fa-solid fa-users text-teal-400 text-sm"></i></div>
+                    <div><div class="font-medium text-sm">Admin Manager</div><div class="text-slate-500 text-xs">Education Group, Abuja</div></div>
+                  </div>
+                </div>
+                <div class="glass-card p-8">
+                  <div class="flex items-center gap-1 text-amber-400 text-sm mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                  <p class="text-slate-300 leading-relaxed mb-6">"The team understood our complex requirements and delivered ahead of schedule. Professional and thorough throughout."</p>
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-500/20 to-rose-500/20 flex items-center justify-center"><i class="fa-solid fa-hospital text-red-400 text-sm"></i></div>
+                    <div><div class="font-medium text-sm">VP of Operations</div><div class="text-slate-500 text-xs">HealthTech Company, Singapore</div></div>
+                  </div>
+                </div>
+                <div class="glass-card p-8">
+                  <div class="flex items-center gap-1 text-amber-400 text-sm mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                  <p class="text-slate-300 leading-relaxed mb-6">"We switched from three different tools to SmartEdu. It does everything better and costs less. Incredible support team."</p>
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center"><i class="fa-solid fa-chalkboard-user text-green-400 text-sm"></i></div>
+                    <div><div class="font-medium text-sm">Headmaster</div><div class="text-slate-500 text-xs">International School, Accra</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center gap-2 mt-8">
+          <button class="testimonial-dot active" data-slide="0" aria-label="Slide 1"></button>
+          <button class="testimonial-dot" data-slide="1" aria-label="Slide 2"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="relative z-10 py-24">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8">
+      <div class="featured-card p-12 md:p-16 text-center reveal">
+        <div class="relative z-10">
+          <div class="w-16 h-16 rounded-2xl bg-teal-500/10 flex items-center justify-center mx-auto mb-8"><i class="fa-solid fa-rocket text-teal-400 text-2xl"></i></div>
+          <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">Ready to transform<br>your organisation?</h2>
+          <p class="text-slate-400 text-lg max-w-lg mx-auto mb-10">Join 200+ organisations worldwide that trust Dutycall for their digital transformation.</p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#contact" class="btn-primary"><span>Start Your Project</span><i class="fa-solid fa-arrow-right"></i></a>
+            <a href="https://smartedu-seven.vercel.app/" target="_blank" class="btn-secondary"><span class="w-2 h-2 rounded-full bg-green-500 inline-block"></span><span>See SmartEdu in Action</span></a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="py-24 lg:py-32">
-    <div class="max-w-2xl mx-auto px-6 md:px-10 lg:px-16">
-      <div class="text-center mb-16">
-        <h2 class="classic-heading text-4xl md:text-5xl font-bold mb-4">Ready to Begin?</h2>
-        <p class="text-xl text-slate-400">Let’s build something exceptional together</p>
-      </div>
-
-      <form action="https://formspree.io/f/YOUR_CODE_HERE" method="POST" class="bg-slate-900 border border-slate-800 rounded-3xl p-10 md:p-14 space-y-8">
-        <div class="grid md:grid-cols-2 gap-6">
-          <input type="text" name="name" placeholder="Your full name" required class="bg-slate-800 border border-slate-700 rounded-2xl px-7 py-5 focus:border-teal-400 outline-none transition">
-          <input type="email" name="email" placeholder="Business email" required class="bg-slate-800 border border-slate-700 rounded-2xl px-7 py-5 focus:border-teal-400 outline-none transition">
+  <section id="contact" class="relative z-10 py-24">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16">
+        <div>
+          <div class="section-label reveal">Get In Touch</div>
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6 reveal reveal-delay-1">Let's build something <span class="gradient-text">exceptional</span></h2>
+          <p class="text-slate-400 text-lg leading-relaxed mb-10 reveal reveal-delay-2">Whether you need a website, school management system, or cybersecurity solution — we're ready to help.</p>
+          <div class="space-y-6 reveal reveal-delay-3">
+            <div class="flex items-center gap-5">
+              <div class="w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center flex-shrink-0"><i class="fa-brands fa-whatsapp text-teal-400 text-xl"></i></div>
+              <div>
+                <div class="text-sm text-slate-500">WhatsApp</div>
+                <a href="https://wa.me/2347080304822?text=Hello%20Dutycall%2C%20I%20would%20like%20to%20discuss%20a%20project..." target="_blank" class="font-medium hover:text-teal-400 transition-colors">+234 708 030 4822</a>
+              </div>
+            </div>
+            <div class="flex items-center gap-5">
+              <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-envelope text-blue-400 text-xl"></i></div>
+              <div>
+                <div class="text-sm text-slate-500">Email <span class="text-slate-600 text-xs ml-1">(click to copy)</span></div>
+                <button id="emailCopyBtn" class="font-medium hover:text-teal-400 transition-colors cursor-pointer text-left" title="Click to copy email address">danladiheman@gmail.com</button>
+              </div>
+            </div>
+            <div class="flex items-center gap-5">
+              <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-location-dot text-purple-400 text-xl"></i></div>
+              <div>
+                <div class="text-sm text-slate-500">Headquarters</div>
+                <span class="font-medium">Jos, Plateau State, Nigeria</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 mt-10 reveal reveal-delay-4">
+            <a href="#" class="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-teal-500/30 hover:bg-teal-500/5 transition-all"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-teal-500/30 hover:bg-teal-500/5 transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-teal-500/30 hover:bg-teal-500/5 transition-all"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-teal-500/30 hover:bg-teal-500/5 transition-all"><i class="fa-brands fa-github"></i></a>
+          </div>
         </div>
-        <textarea name="message" rows="6" placeholder="Tell us about your project or school..." class="w-full bg-slate-800 border border-slate-700 rounded-2xl px-7 py-5 focus:border-teal-400 outline-none transition"></textarea>
-        <button type="submit" class="w-full bg-teal-700 hover:bg-teal-600 py-6 rounded-full font-semibold text-lg transition active:scale-95">
-          Send Message
-        </button>
-      </form>
-
-      <div class="text-center mt-12">
-        <p class="text-slate-400 mb-4">Or reach us instantly on WhatsApp</p>
-        <a href="https://wa.me/2347080304822?text=Hello%20Dutycall%20team%2C%20I'm%20interested%20in%20your%20services..." 
-           target="_blank"
-           class="inline-flex items-center gap-5 bg-green-600 hover:bg-green-700 text-white px-10 py-5 rounded-full font-semibold text-xl transition shadow-2xl">
-          <i class="fa-brands fa-whatsapp text-4xl"></i>
-          <span class="text-3xl">070 8030 4822</span>
-        </a>
+        <div class="reveal reveal-delay-2">
+          <form id="contactForm" class="glass-card p-8 md:p-10 space-y-5">
+            <div class="grid md:grid-cols-2 gap-5">
+              <div>
+                <label class="text-xs font-medium text-slate-400 mb-2 block">Full Name *</label>
+                <input type="text" name="name" required class="form-input" placeholder="Your full name">
+              </div>
+              <div>
+                <label class="text-xs font-medium text-slate-400 mb-2 block">Email *</label>
+                <input type="email" name="email" required class="form-input" placeholder="you@company.com">
+              </div>
+            </div>
+            <div>
+              <label class="text-xs font-medium text-slate-400 mb-2 block">Organisation</label>
+              <input type="text" name="organisation" class="form-input" placeholder="Company or School name">
+            </div>
+            <div>
+              <label class="text-xs font-medium text-slate-400 mb-2 block">Service Interested In</label>
+              <select name="service" class="form-input" style="appearance:none;background-image:url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%2364748b%22%20d%3D%22M6%208L1%203h10z%22%2F%3E%3C%2Fsvg%3E');background-repeat:no-repeat;background-position:right 16px center;">
+                <option value="" style="background:#0f172a;">Select a service...</option>
+                <option value="web" style="background:#0f172a;">Website & Software Development</option>
+                <option value="smartedu" style="background:#0f172a;">SmartEdu School Management</option>
+                <option value="cyber" style="background:#0f172a;">Cybersecurity Solutions</option>
+                <option value="mobile" style="background:#0f172a;">Mobile App Development</option>
+                <option value="cloud" style="background:#0f172a;">Cloud & DevOps</option>
+                <option value="ai" style="background:#0f172a;">AI & Data Analytics</option>
+                <option value="other" style="background:#0f172a;">Other</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs font-medium text-slate-400 mb-2 block">Project Details *</label>
+              <textarea name="message" rows="5" required class="form-input" placeholder="Tell us about your project, goals, and timeline..."></textarea>
+            </div>
+            <button type="submit" id="submitBtn" class="btn-primary w-full justify-center" style="padding:16px 24px;font-size:15px;">
+              <span>Send Message</span>
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+            <p class="text-center text-xs text-slate-600">We typically respond within 2 hours during business hours.</p>
+          </form>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-black py-20 border-t border-slate-800">
-    <div class="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16 text-center">
-      <div class="flex justify-center items-center gap-4 mb-8">
-        <div class="w-11 h-11 bg-teal-700 rounded-2xl flex items-center justify-center text-white font-bold text-3xl">D</div>
-        <span class="text-3xl font-semibold tracking-tighter">Dutycall</span>
+  <footer class="relative z-10 border-t border-white/5 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div class="lg:col-span-1">
+          <a href="#" class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center text-white font-bold text-lg">D</div>
+            <span class="text-xl font-bold tracking-tight">Dutycall</span>
+          </a>
+          <p class="text-slate-500 text-sm leading-relaxed mb-6">Smart Solutions. Safe Systems. Strong Security. Trusted by organisations worldwide.</p>
+          <div class="flex items-center gap-3">
+            <a href="#" class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-slate-500 hover:text-white transition-colors text-sm"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-slate-500 hover:text-white transition-colors text-sm"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-slate-500 hover:text-white transition-colors text-sm"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-slate-500 hover:text-white transition-colors text-sm"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-semibold text-sm mb-5">Services</h4>
+          <ul class="space-y-3 text-sm text-slate-500">
+            <li><a href="#services" class="hover:text-teal-400 transition-colors">Web Development</a></li>
+            <li><a href="https://smartedu-seven.vercel.app/" target="_blank" class="hover:text-teal-400 transition-colors">SmartEdu Platform</a></li>
+            <li><a href="#services" class="hover:text-teal-400 transition-colors">Cybersecurity</a></li>
+            <li><a href="#services" class="hover:text-teal-400 transition-colors">Mobile Apps</a></li>
+            <li><a href="#services" class="hover:text-teal-400 transition-colors">Cloud & DevOps</a></li>
+            <li><a href="#services" class="hover:text-teal-400 transition-colors">AI & Analytics</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-sm mb-5">Company</h4>
+          <ul class="space-y-3 text-sm text-slate-500">
+            <li><a href="#about" class="hover:text-teal-400 transition-colors">About Us</a></li>
+            <li><a href="#testimonials" class="hover:text-teal-400 transition-colors">Testimonials</a></li>
+            <li><a href="#" class="hover:text-teal-400 transition-colors">Careers</a></li>
+            <li><a href="#" class="hover:text-teal-400 transition-colors">Blog</a></li>
+            <li><a href="#contact" class="hover:text-teal-400 transition-colors">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-sm mb-5">SmartEdu</h4>
+          <ul class="space-y-3 text-sm text-slate-500">
+            <li><a href="https://smartedu-seven.vercel.app/" target="_blank" class="hover:text-teal-400 transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Live Demo</a></li>
+            <li><a href="#smartedu" class="hover:text-teal-400 transition-colors">Features</a></li>
+            <li><a href="#contact" class="hover:text-teal-400 transition-colors">Pricing</a></li>
+            <li><a href="#contact" class="hover:text-teal-400 transition-colors">Book a Demo</a></li>
+            <li><a href="mailto:danladiheman@gmail.com" class="hover:text-teal-400 transition-colors">Support Email</a></li>
+          </ul>
+        </div>
       </div>
-      <p class="text-slate-400 text-sm">© 2026 Dutycall ICT Solutions • Jos, Nigeria</p>
-      <p class="text-slate-500 mt-2 text-xs">Smart Solutions. Safe Systems. Strong Security.</p>
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-slate-600 text-xs">© 2026 Dutycall ICT Solutions. All rights reserved.</p>
+        <div class="flex items-center gap-6 text-xs text-slate-600">
+          <a href="#" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+          <a href="mailto:danladiheman@gmail.com" class="hover:text-slate-400 transition-colors">danladiheman@gmail.com</a>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <!-- Mobile Menu Script -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+  <div id="toast" class="toast"></div>
+  <div id="copyToast" class="copy-toast"><i class="fa-solid fa-check mr-2"></i>Email copied to clipboard!</div>
+
   <script>
-    const btn = document.getElementById('mobile-btn');
-    const menu = document.getElementById('mobile-menu');
-    const icon = btn.querySelector('i');
-    btn.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-      icon.classList.toggle('fa-bars');
-      icon.classList.toggle('fa-xmark');
+    function createParticles() {
+      const container = document.getElementById('particles');
+      const colors = ['rgba(13,148,136,0.3)', 'rgba(59,130,246,0.2)', 'rgba(139,92,246,0.15)'];
+      for (let i = 0; i < 30; i++) {
+        const p = document.createElement('div');
+        p.classList.add('particle');
+        const size = Math.random() * 3 + 1;
+        p.style.cssText = `width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random() * colors.length)]};left:${Math.random() * 100}%;bottom:-10px;animation-duration:${Math.random() * 15 + 10}s;animation-delay:${Math.random() * 10}s;`;
+        container.appendChild(p);
+      }
+    }
+    createParticles();
+
+    const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+      backToTop.classList.toggle('visible', window.scrollY > 600);
     });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const mobileClose = document.getElementById('mobile-close');
+    const mobileLinks = mobileOverlay.querySelectorAll('.mobile-link');
+    function openMenu() { mobileOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { mobileOverlay.classList.remove('open'); document.body.style.overflow = ''; }
+    mobileToggle.addEventListener('click', openMenu);
+    mobileClose.addEventListener('click', closeMenu);
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    let counterDone = false;
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !counterDone) {
+          counterDone = true;
+          document.querySelectorAll('.stat-number').forEach(num => {
+            const target = parseInt(num.dataset.target);
+            const duration = 2000;
+            const start = performance.now();
+            function update(now) {
+              const progress = Math.min((now - start) / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              num.textContent = Math.round(target * eased) + (target === 99 ? '%' : '+');
+              if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.stat-number').forEach(num => counterObserver.observe(num));
+
+    const track = document.getElementById('testimonialTrack');
+    const dots = document.querySelectorAll('.testimonial-dot');
+    let currentSlide = 0;
+    let autoSlide;
+    function goToSlide(index) {
+      currentSlide = index;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+    dots.forEach(dot => { dot.addEventListener('click', () => { goToSlide(parseInt(dot.dataset.slide)); resetAutoSlide(); }); });
+    function startAutoSlide() { autoSlide = setInterval(() => goToSlide((currentSlide + 1) % 2), 6000); }
+    function resetAutoSlide() { clearInterval(autoSlide); startAutoSlide(); }
+    startAutoSlide();
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast toast-${type} show`;
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+
+    document.getElementById('emailCopyBtn').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('danladiheman@gmail.com');
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = 'danladiheman@gmail.com';
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      const ct = document.getElementById('copyToast');
+      ct.classList.add('show');
+      setTimeout(() => ct.classList.remove('show'), 2500);
+    });
+
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const originalHTML = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span><i class="fa-solid fa-spinner fa-spin mr-2"></i>Sending...</span>';
+      submitBtn.disabled = true;
+      const formData = new FormData(contactForm);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const org = formData.get('organisation') || 'N/A';
+      const service = formData.get('service') || 'N/A';
+      const message = formData.get('message');
+      const subject = encodeURIComponent(`New Inquiry from ${name} — ${service}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nOrganisation: ${org}\nService: ${service}\n\nMessage:\n${message}`);
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      submitBtn.innerHTML = '<span><i class="fa-solid fa-check mr-2"></i>Opening Email...</span>';
+      showToast('Opening your email client to send the message.', 'success');
+      window.location.href = `mailto:danladiheman@gmail.com?subject=${subject}&body=${body}`;
+      setTimeout(() => { submitBtn.innerHTML = originalHTML; submitBtn.disabled = false; contactForm.reset(); }, 3000);
+    });
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => { if (window.scrollY >= section.offsetTop - 120) current = section.getAttribute('id'); });
+      navLinks.forEach(link => { link.classList.toggle('active', link.getAttribute('href') === `#${current}`); });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    if (window.innerWidth > 1024) {
+      document.querySelectorAll('.glass-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const rotateX = (y - rect.height / 2) / 30;
+          const rotateY = (rect.width / 2 - x) / 30;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        });
+      });
+    }
   </script>
 </body>
 </html>
